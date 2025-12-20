@@ -1,0 +1,13 @@
+.overview-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    border: 2px dashed blue;
+}
+
+.blogpost-list {
+    width: 50%;
+    flex-shrink: 1;
+    border: 2px dashed red;
+}
