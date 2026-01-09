@@ -1,4 +1,4 @@
-//Dit is de pagina waarop het hele artikel te zien is
+//Dit is de detailpagina waarop het hele artikel te zien is
 
 import './BlogPage.css';
 import {Link, useParams} from 'react-router-dom';
@@ -9,6 +9,7 @@ import axios from 'axios';
 import {useEffect, useState} from 'react';
 import dateFormatter from '/src/helpers/dateFormatter.js';
 import BlogContent from "../../components/BlogContent/BlogContent.jsx";
+import {useNavigate} from "react-router-dom";
 
 function BlogPage() {
 
@@ -24,6 +25,7 @@ function BlogPage() {
     const [data, setData] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(true);
+    const navigate = useNavigate();
 
 
     async function fetchBlogArticle() {
@@ -60,6 +62,28 @@ function BlogPage() {
         void fetchBlogArticle();
     }, [])
 
+    async function deleteBlog() {
+
+        toggleError(false);
+        toggleLoading(true);
+
+        try {
+            const response = await axios.delete(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts/${postID}`,
+                {
+                    headers: {
+                        'novi-education-project-id': 'b8985a1c-c1b7-4c00-9777-666019e0877d'
+                    }
+                })
+            navigate(`/overview`)
+        } catch (error) {
+            console.error(error);
+            console.log("De post kon niet worden verwijderd");
+            toggleError(true);
+        } finally {
+            toggleLoading(false);
+        }
+    }
+
     return (
 
 
@@ -77,6 +101,8 @@ function BlogPage() {
                 blogTime={blogTime}
                 blogTitle={blogTitle}
             />}
+
+            <button type="button" onClick={deleteBlog}>verwijder dit blogartikel</button>
             <h4><Link to="/overview">Terug naar de overzichtspagina</Link></h4>
         </main>
     )
