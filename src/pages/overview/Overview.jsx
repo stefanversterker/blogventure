@@ -1,3 +1,5 @@
+//Dit is het overzicht waarin alle artikelen komen te staan
+
 import './Overview.css'
 import BlogPost from "../../components/blogpost/BlogPost.jsx";
 /*import logo from './assets/logo-white.png'*/

@@ -1,18 +1,15 @@
-//Dit is de pagina waarop het hele artikel te zien is
+//Success message met link naar de met succes geplaatste blogpost
 
-import './BlogPage.css';
-import {Link, useParams} from 'react-router-dom';
-import axios from 'axios';
-/*import logo from './assets/logo-white.png'*/
-/*import { Routes, Route } from 'react-router-dom';*/
-/*import posts from '/src/constants/data.json';*/
-import {useEffect, useState} from 'react';
-import dateFormatter from '/src/helpers/dateFormatter.js';
+import './SuccessPage.css'
+import {useState} from 'react'
+import axios from "axios";
+import {useParams} from "react-router-dom";
 import BlogContent from "../../components/BlogContent/BlogContent.jsx";
+/*import { Routes, Route } from 'react-router-dom';*/
 
-function BlogPage() {
 
-    const {postID} = useParams()
+function SuccessPage() {
+
     const [blogTitle, setBlogTitle] = useState('');
     const [blogSubTitle, setBlogSubTitle] = useState('');
     const [blogAuthor, setBlogAuthor] = useState('');
@@ -22,16 +19,17 @@ function BlogPage() {
     const [blogComments, setBlogComments] = useState(0);
     const [blogShares, setBlogShares] = useState(0);
     const [data, setData] = useState([]);
-    const [error, toggleError] = useState(false);
-    const [loading, toggleLoading] = useState(true);
+    const [error, toggleError] = useState(false)
+    const [loading, toggleLoading] = useState(true)
+    const {postID} = useParams()
 
+    async function fetchLatestBlog(){
 
-    async function fetchBlogArticle() {
-
-        toggleError(false);
-        toggleLoading(true);
+        toggleError(false)
+        toggleLoading(true)
 
         try {
+
             const response = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts/${postID}`, {
                 headers: {
                     'novi-education-project-id': 'b8985a1c-c1b7-4c00-9777-666019e0877d'
@@ -47,27 +45,21 @@ function BlogPage() {
             setBlogContent(response.data.content);
             setBlogComments(response.data.comments);
             setBlogShares(response.data.shares);
-            console.log(response.data);
-        } catch (error) {
+            console.log(data)
+
+        } catch(error) {
             console.error(error);
             toggleError(true);
         } finally {
-            toggleLoading(false);
+            toggleLoading(false)
         }
     }
 
-    useEffect(() => {
-        void fetchBlogArticle();
-    }, [])
-
     return (
 
-
-        <main>
-            {error && (<h2>Oeps, we kunnen je blog niet vinden</h2>)}
-            {loading && (<h2>We zijn je blogs aan het zoeken, nog even geduld</h2>)}
-
-            {!error && <BlogContent
+        <div>
+            <h2 className="success-message">De blogpost is met succes toegevoegd.</h2>
+            <BlogContent className="blogpage"
                 blogAuthor={blogAuthor}
                 blogComments={blogComments}
                 blogContent={blogContent}
@@ -76,10 +68,9 @@ function BlogPage() {
                 blogSubTitle={blogSubTitle}
                 blogTime={blogTime}
                 blogTitle={blogTitle}
-            />}
-            <h4><Link to="/overview">Terug naar de overzichtspagina</Link></h4>
-        </main>
+            />
+        </div>
     )
 }
 
-export default BlogPage;
+export default SuccessPage

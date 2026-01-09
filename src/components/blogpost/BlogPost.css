@@ -22,3 +22,7 @@
 .blogger-name {
     color: #2C2F39;
 }
+
+a {
+    text-decoration: none;
+}

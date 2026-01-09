@@ -1,18 +1,14 @@
-//Dit is de pagina waarop het hele artikel te zien is
+//Dit component haalt een compleet blog-artikel op en rendert het
 
-import './BlogPage.css';
+import './GetBlog.css';
 import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
-/*import logo from './assets/logo-white.png'*/
-/*import { Routes, Route } from 'react-router-dom';*/
-/*import posts from '/src/constants/data.json';*/
 import {useEffect, useState} from 'react';
 import dateFormatter from '/src/helpers/dateFormatter.js';
 import BlogContent from "../../components/BlogContent/BlogContent.jsx";
 
-function BlogPage() {
+function GetBlog(id) {
 
-    const {postID} = useParams()
     const [blogTitle, setBlogTitle] = useState('');
     const [blogSubTitle, setBlogSubTitle] = useState('');
     const [blogAuthor, setBlogAuthor] = useState('');
@@ -24,7 +20,7 @@ function BlogPage() {
     const [data, setData] = useState([]);
     const [error, toggleError] = useState(false);
     const [loading, toggleLoading] = useState(true);
-
+    const {postID} = useParams()
 
     async function fetchBlogArticle() {
 
@@ -32,7 +28,7 @@ function BlogPage() {
         toggleLoading(true);
 
         try {
-            const response = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts/${postID}`, {
+            const response = await axios.get(`https://novi-backend-api-wgsgz.ondigitalocean.app/api/blogposts/${id}`, {
                 headers: {
                     'novi-education-project-id': 'b8985a1c-c1b7-4c00-9777-666019e0877d'
                 },
@@ -60,26 +56,25 @@ function BlogPage() {
         void fetchBlogArticle();
     }, [])
 
+
     return (
 
-
-        <main>
+        <section className="blogpage">
             {error && (<h2>Oeps, we kunnen je blog niet vinden</h2>)}
             {loading && (<h2>We zijn je blogs aan het zoeken, nog even geduld</h2>)}
 
-            {!error && <BlogContent
-                blogAuthor={blogAuthor}
-                blogComments={blogComments}
-                blogContent={blogContent}
-                blogCreated={blogCreated}
-                blogShares={blogShares}
-                blogSubTitle={blogSubTitle}
-                blogTime={blogTime}
-                blogTitle={blogTitle}
-            />}
+            {!error &&
+                <section>
+                    <h1>{blogTitle}</h1>
+                    <h4>{blogSubTitle}</h4>
+                    <p>Geschreven door {blogAuthor} op {dateFormatter(blogCreated)}</p>
+                    <p>{blogTime} minuten lezen</p>
+                    <p>{blogContent}</p>
+                    <p>{blogComments} reacties - {blogShares} keer gedeeld</p>
+                </section>}
             <h4><Link to="/overview">Terug naar de overzichtspagina</Link></h4>
-        </main>
+        </section>
     )
 }
 
-export default BlogPage;
+export default GetBlog;

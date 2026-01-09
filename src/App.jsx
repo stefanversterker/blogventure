@@ -9,7 +9,9 @@ import Navbar from "./components/navbar/Navbar.jsx";
 import BlogPost from "./components/blogpost/BlogPost.jsx";
 import BlogPage from "./pages/blogpage/BlogPage.jsx";
 import Footer from "./components/footer/Footer.jsx";
+
 import {useState} from "react";
+import SuccessPage from "./pages/SuccessPage/SuccessPage.jsx";
 
 
 
@@ -28,6 +30,7 @@ function App() {
                 <Route path="/new-post" element={<NewPost/>}/>
                 <Route path="/overview" element={<Overview/>}/>
                 <Route path="/404" element={<Error/>}/>
+                <Route path="/success/:postID" element={<SuccessPage/>}/>
                 <Route path="/blogpost/:postID" element={<BlogPost/>}/>
                 <Route path="/blogpage/:postID" element={<BlogPage/>}/>
             </Routes>
