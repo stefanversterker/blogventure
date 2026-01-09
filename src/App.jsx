@@ -1,5 +1,5 @@
 import './App.css'
-import logo from './assets/logo-white.png'
+
 import {Routes, Route} from 'react-router-dom';
 import Error from './pages/error/Error.jsx';
 import Home from './pages/home/Home.jsx';
@@ -7,10 +7,8 @@ import NewPost from './pages/new-post/NewPost.jsx';
 import Overview from './pages/overview/Overview.jsx';
 import Navbar from "./components/navbar/Navbar.jsx";
 import BlogPost from "./components/blogpost/BlogPost.jsx";
-import BlogPage from "./pages/blogpage/BlogPage.jsx";
+import BlogPage from "./components/blogpage/BlogPage.jsx";
 import Footer from "./components/footer/Footer.jsx";
-
-import {useState} from "react";
 import SuccessPage from "./pages/SuccessPage/SuccessPage.jsx";
 
 

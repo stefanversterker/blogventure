@@ -2,9 +2,6 @@
 
 import './Overview.css'
 import BlogPost from "../../components/blogpost/BlogPost.jsx";
-/*import logo from './assets/logo-white.png'*/
-/*import { Routes, Route } from 'react-router-dom';*/
-/*import posts from '/src/constants/data.json';*/
 
 function Overview() {
     return (

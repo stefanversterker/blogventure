@@ -8,7 +8,7 @@ import axios from 'axios';
 /*import posts from '/src/constants/data.json';*/
 import {useEffect, useState} from 'react';
 import dateFormatter from '/src/helpers/dateFormatter.js';
-import BlogContent from "../../components/BlogContent/BlogContent.jsx";
+import BlogContent from "../BlogContent/BlogContent.jsx";
 import {useNavigate} from "react-router-dom";
 
 function BlogPage() {

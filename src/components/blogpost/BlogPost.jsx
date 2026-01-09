@@ -1,7 +1,6 @@
-//
+//Dit is een list item voor de Overview pagina
 
 import './BlogPost.css'
-/*import { Routes, Route } from 'react-router-dom';*/
 import {Link, useParams} from "react-router-dom";
 import {useState} from 'react'
 import {useEffect} from 'react'

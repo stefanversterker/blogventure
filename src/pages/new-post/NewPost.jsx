@@ -18,7 +18,7 @@ function NewPost() {
     const [messageValue, setMessageValue] = React.useState('')
   /*  const [data, setData] = useState([]);*/
     const [error, toggleError] = useState(false)
-    const [loading, toggleLoading] = useState(true)
+    const [loading, toggleLoading] = useState(false)
 
     const navigate = useNavigate();
 
@@ -26,7 +26,6 @@ function NewPost() {
         toggleError(false)
         toggleLoading(true)
         e.preventDefault();
-
 
         try {
 
@@ -46,9 +45,12 @@ function NewPost() {
                     },
                 })
             navigate(`/success/${response.data.id}`)
+
+
         } catch (error) {
             console.error("Oeps, je blog kon niet worden gepost")
             toggleError(true)
+            toggleLoading(false)
         } finally {
             toggleLoading(false)
         }
@@ -72,7 +74,7 @@ function NewPost() {
             <h1>Post toevoegen</h1>
 
             {error && (<h2 className="error-message">Oeps, door onze nieuwe junior frontend developer, Stefan, kon je blog niet worden geplaatst 😬</h2>)}
-            {loading && (<h2>Onze nieuwe junior frontend developer, Stefan, is onderweg met je post 🐌</h2>)}
+            {loading && (<h2>Stefan, onze nieuwe junior frontend developer, is onderweg met je post 🐌</h2>)}
             <form onSubmit={handleSubmit} className="new-blog">
 
                 <FormInput

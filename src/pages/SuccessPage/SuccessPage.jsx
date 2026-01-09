@@ -3,8 +3,9 @@
 import './SuccessPage.css'
 import {useState} from 'react'
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import BlogContent from "../../components/BlogContent/BlogContent.jsx";
+import {useNavigate} from "react-router-dom";
 /*import { Routes, Route } from 'react-router-dom';*/
 
 
@@ -20,8 +21,9 @@ function SuccessPage() {
     const [blogShares, setBlogShares] = useState(0);
     const [data, setData] = useState([]);
     const [error, toggleError] = useState(false)
-    const [loading, toggleLoading] = useState(true)
+    const [loading, toggleLoading] = useState(false)
     const {postID} = useParams()
+    const navigate = useNavigate();
 
     async function fetchLatestBlog(){
 
@@ -47,6 +49,8 @@ function SuccessPage() {
             setBlogShares(response.data.shares);
             console.log(data)
 
+            navigate(`/blogpage/${response.data.id}`)
+
         } catch(error) {
             console.error(error);
             toggleError(true);
@@ -58,17 +62,8 @@ function SuccessPage() {
     return (
 
         <div>
-            <h2 className="success-message">De blogpost is met succes toegevoegd.</h2>
-            <BlogContent className="blogpage"
-                blogAuthor={blogAuthor}
-                blogComments={blogComments}
-                blogContent={blogContent}
-                blogCreated={blogCreated}
-                blogShares={blogShares}
-                blogSubTitle={blogSubTitle}
-                blogTime={blogTime}
-                blogTitle={blogTitle}
-            />
+            <h2 className="success-message">Je blogpost is met succes toegevoegd.</h2>
+            <button type="button" onClick={fetchLatestBlog}>Klik hier om je blog te bekijken</button>
         </div>
     )
 }
