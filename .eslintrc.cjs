@@ -13,4 +13,6 @@ module.exports = {
     'react-refresh/only-export-components': 'warn',
     'react/prop-types': 'off'
   },
+  indent: ["error", 4]
+
 }

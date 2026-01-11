@@ -1,0 +1,41 @@
+.links {
+    display: flex;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    padding: 10px 30px;
+    background: rgb(44,47,57);
+}
+
+nav a,
+nav a:visited {
+    text-decoration: none;
+    color: lightgray;
+}
+
+.navbar img {
+    width: 150px;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.default-menu-link {
+    text-decoration: none;
+}
+
+.active-menu-link {
+    text-decoration: underline;
+}
+
+li {
+    list-style-type: none;
+    margin: 0 0 0 20px;
+}

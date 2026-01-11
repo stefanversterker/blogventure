@@ -1,0 +1,10 @@
+.label-and-input {
+    margin: 20px 0 ;
+}
+
+.form-input {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+}
