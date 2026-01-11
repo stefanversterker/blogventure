@@ -3,11 +3,7 @@
 import './BlogPage.css';
 import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
-/*import logo from './assets/logo-white.png'*/
-/*import { Routes, Route } from 'react-router-dom';*/
-/*import posts from '/src/constants/data.json';*/
 import {useEffect, useState} from 'react';
-import dateFormatter from '/src/helpers/dateFormatter.js';
 import BlogContent from "../BlogContent/BlogContent.jsx";
 import {useNavigate} from "react-router-dom";
 
@@ -40,6 +36,8 @@ function BlogPage() {
                 },
             })
 
+
+            //Om dubbele code te voorkomen heb ik geprobeerd om een component te maken voor de get request, maar dat lukte niet
             setData(response.data);
             setBlogTitle(response.data.title);
             setBlogSubTitle(response.data.subtitle);

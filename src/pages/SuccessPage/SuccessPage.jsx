@@ -3,22 +3,13 @@
 import './SuccessPage.css'
 import {useState} from 'react'
 import axios from "axios";
-import {Link, useParams} from "react-router-dom";
-import BlogContent from "../../components/BlogContent/BlogContent.jsx";
+import {useParams} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-/*import { Routes, Route } from 'react-router-dom';*/
 
 
 function SuccessPage() {
 
-    const [blogTitle, setBlogTitle] = useState('');
-    const [blogSubTitle, setBlogSubTitle] = useState('');
-    const [blogAuthor, setBlogAuthor] = useState('');
-    const [blogCreated, setBlogCreated] = useState(0);
-    const [blogTime, setBlogTime] = useState(0);
-    const [blogContent, setBlogContent] = useState('');
-    const [blogComments, setBlogComments] = useState(0);
-    const [blogShares, setBlogShares] = useState(0);
+
     const [data, setData] = useState([]);
     const [error, toggleError] = useState(false)
     const [loading, toggleLoading] = useState(false)
@@ -39,14 +30,6 @@ function SuccessPage() {
             })
 
             setData(response.data);
-            setBlogTitle(response.data.title);
-            setBlogSubTitle(response.data.subtitle);
-            setBlogAuthor(response.data.author);
-            setBlogCreated(response.data.created);
-            setBlogTime(response.data.readTime);
-            setBlogContent(response.data.content);
-            setBlogComments(response.data.comments);
-            setBlogShares(response.data.shares);
             console.log(data)
 
             navigate(`/blogpage/${response.data.id}`)
@@ -61,10 +44,16 @@ function SuccessPage() {
 
     return (
 
-        <div>
-            <h2 className="success-message">Je blogpost is met succes toegevoegd.</h2>
-            <button type="button" onClick={fetchLatestBlog}>Klik hier om je blog te bekijken</button>
-        </div>
+        <main>
+            {error && (<h2>Oeps, we kunnen de pagina niet laden</h2>)}
+            {loading && (<h2>We zijn de pagina aan het laden, nog even geduld</h2>)}
+
+            {!error &&
+            <>
+                <h2 className="success-message">Je blogpost is met succes toegevoegd.</h2>
+                <button type="button" onClick={fetchLatestBlog}>Klik hier om je blog te bekijken</button>
+            </>}
+        </main>
     )
 }
 

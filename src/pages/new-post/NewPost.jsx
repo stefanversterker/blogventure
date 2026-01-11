@@ -1,6 +1,4 @@
 import './NewPost.css'
-/*import logo from './assets/logo-white.png'*/
-/*import { Routes, Route } from 'react-router-dom';*/
 import FormInput from "../../components/forminput/FormInput.jsx";
 import Button from "../../components/button/Button.jsx";
 import readTimeCalculator from "../../helpers/readTimeCalculator.js";
@@ -8,7 +6,7 @@ import React from "react";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from "axios";
-import dateFormatter from "../../helpers/dateFormatter.js";
+
 
 function NewPost() {
 
@@ -16,7 +14,6 @@ function NewPost() {
     const [blogSubTitleValue, setBlogSubTitleValue] = React.useState('')
     const [authorValue, setAuthorValue] = React.useState('')
     const [messageValue, setMessageValue] = React.useState('')
-  /*  const [data, setData] = useState([]);*/
     const [error, toggleError] = useState(false)
     const [loading, toggleLoading] = useState(false)
 

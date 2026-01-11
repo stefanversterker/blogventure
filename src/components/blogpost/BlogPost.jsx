@@ -46,6 +46,7 @@ function BlogPost() {
                 {error && (<h2>Oeps, we kunnen je blogs niet vinden</h2>)}
                 {loading && (<h2>We zijn je blogs aan het zoeken, nog even geduld</h2>)}
 
+            {/*Het is me niet duidelijk hoe ik checks moet implementeren en hoe ik kan controleren of ze werken.*/}
                 {!error && data.map((c) => (
                     <li key={c.id}>
                         <article className="blogpost-container">
